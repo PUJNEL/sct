@@ -58,8 +58,10 @@ class AppointmentsController extends AppController
                 $this->Flash->error(__('The appointment could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Appointments->Users->find('list', ['limit' => 200]);
-        $this->set(compact('appointment', 'users'));
+        $patients = $this->Appointments->Users->find('list', ['limit' => 200])->where(['Users.group_id'=>1]);
+        $doctors = $this->Appointments->Users->find('list', ['limit' => 200])->where(['Users.group_id'=>2]);
+
+        $this->set(compact('appointment', 'patients', 'doctors'));
         $this->set('_serialize', ['appointment']);
     }
 

@@ -13,8 +13,8 @@
     <fieldset>
         <legend><?= __('Add Appointment') ?></legend>
         <?php
-            echo $this->Form->input('patient_id');
-            echo $this->Form->input('doctor_id', ['options' => $users]);
+            echo $this->Form->input('patient_id', ['options' => $patients]);
+            echo $this->Form->input('doctor_id', ['options' => $doctors]);
             echo $this->Form->input('name');
             echo $this->Form->input('detail');
             echo $this->Form->input('date');
