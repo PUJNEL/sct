@@ -43,7 +43,37 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+
+
+        /*** Auth request ***/
+       $this->loadComponent('Auth',[
+            'authorize' => ['Controller'],
+            'authError' => "Your username and password is incorrect, please try again.",
+        ]);
+
+        $this->Auth->config('authenticate', [
+            'Basic' => [
+                //'fields' => ['username' => 'username', 'password' => 'api_key'],
+                'userModel' => 'Users'
+            ],
+        ]);
+        /*** End Auth request***/
+
     }
+
+    public function isAuthorized($user)
+    {
+        // Admin can access every action
+       /* if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        } */
+
+        // Default deny
+        return true;
+    }
+
+
+
 
     /**
      * Before render callback.
@@ -59,4 +89,6 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
+
+
 }
