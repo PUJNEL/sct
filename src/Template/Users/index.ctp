@@ -15,9 +15,9 @@
                 <th><?= $this->Paginator->sort('group_id') ?></th>
                 <th><?= $this->Paginator->sort('username') ?></th>
                 <th><?= $this->Paginator->sort('password') ?></th>
-                <th><?= $this->Paginator->sort('created') ?></th>
-                <th><?= $this->Paginator->sort('modified') ?></th>
-                <th><?= $this->Paginator->sort('active') ?></th>
+                <th><?= $this->Paginator->sort('tipo_documento') ?></th>
+                <th><?= $this->Paginator->sort('documento') ?></th>
+                <th><?= $this->Paginator->sort('primer_nombre') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -28,9 +28,9 @@
                 <td><?= $user->has('group') ? $this->Html->link($user->group->name, ['controller' => 'Groups', 'action' => 'view', $user->group->id]) : '' ?></td>
                 <td><?= h($user->username) ?></td>
                 <td><?= h($user->password) ?></td>
-                <td><?= h($user->created) ?></td>
-                <td><?= h($user->modified) ?></td>
-                <td><?= h($user->active) ?></td>
+                <td><?= h($user->tipo_documento) ?></td>
+                <td><?= h($user->documento) ?></td>
+                <td><?= h($user->primer_nombre) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>

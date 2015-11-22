@@ -109,8 +109,6 @@ class UsersController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
-
-
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -119,6 +117,4 @@ class UsersController extends AppController
         // cause problems with normal functioning of AuthComponent.
         $this->Auth->allow(['add','index']);
     }
-
-
 }

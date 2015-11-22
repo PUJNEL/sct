@@ -1,0 +1,21 @@
+2015-11-22 19:45:42 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'sct.stepstypes' doesn't exist
+Stack Trace:
+#0 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(96): Cake\Database\Schema\Collection->_reflect('Column', 'stepstypes', Array, Object(Cake\Database\Schema\Table))
+#1 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(64): Cake\Database\Schema\Collection->describe('stepstypes', Array)
+#2 C:\wamp\www\sct\vendor\cakephp\cakephp\src\ORM\Table.php(423): Cake\Database\Schema\CachedCollection->describe('stepstypes')
+#3 C:\wamp\www\sct\vendor\cakephp\cakephp\src\ORM\Table.php(499): Cake\ORM\Table->schema()
+#4 C:\wamp\www\sct\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(194): Cake\ORM\Table->primaryKey()
+#5 C:\wamp\www\sct\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(110): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 C:\wamp\www\sct\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(96): Bake\Shell\Task\ModelTask->bake('Stepstypes')
+#7 C:\wamp\www\sct\vendor\cakephp\bake\src\Shell\BakeShell.php(250): Bake\Shell\Task\ModelTask->main('Stepstypes')
+#8 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('stepstypes', 0)
+#9 C:\wamp\www\sct\vendor\cakephp\bake\src\Shell\BakeShell.php(253): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('stepstypes')
+#11 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Console\Shell.php(436): call_user_func_array(Array, Array)
+#12 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(212): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(179): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 C:\wamp\www\sct\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(126): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 C:\wamp\www\sct\bin\cake.php(33): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+

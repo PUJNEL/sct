@@ -2,7 +2,6 @@
 namespace App\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher;
-
 use Cake\ORM\Entity;
 
 /**
@@ -13,6 +12,14 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Group $group
  * @property string $username
  * @property string $password
+ * @property string $tipo_documento
+ * @property string $documento
+ * @property string $primer_nombre
+ * @property string $segundo_nombre
+ * @property string $primer_apellido
+ * @property string $segundo_apellido
+ * @property string $edad
+ * @property string $genero
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  * @property bool $active
@@ -38,5 +45,4 @@ class User extends Entity
     {
         return (new DefaultPasswordHasher)->hash($password);
     }
-    
 }

@@ -14,6 +14,14 @@
             echo $this->Form->input('group_id', ['options' => $groups]);
             echo $this->Form->input('username');
             echo $this->Form->input('password');
+            echo $this->Form->input('tipo_documento');
+            echo $this->Form->input('documento');
+            echo $this->Form->input('primer_nombre');
+            echo $this->Form->input('segundo_nombre');
+            echo $this->Form->input('primer_apellido');
+            echo $this->Form->input('segundo_apellido');
+            echo $this->Form->input('edad');
+            echo $this->Form->input('genero');
             echo $this->Form->input('active');
         ?>
     </fieldset>

@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * GroupsFixture
+ * SteptypesFixture
  *
  */
-class GroupsFixture extends TestFixture
+class SteptypesFixture extends TestFixture
 {
 
     /**
@@ -18,8 +18,8 @@ class GroupsFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'name' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'description' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'name' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'detail' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -41,9 +41,9 @@ class GroupsFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'description' => 'Lorem ipsum dolor sit amet',
-            'created' => '2015-11-22 19:44:58',
-            'modified' => '2015-11-22 19:44:58'
+            'detail' => 'Lorem ipsum dolor sit amet',
+            'created' => '2015-11-22 19:46:12',
+            'modified' => '2015-11-22 19:46:12'
         ],
     ];
 }

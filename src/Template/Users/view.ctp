@@ -25,6 +25,38 @@
             <td><?= h($user->password) ?></td>
         </tr>
         <tr>
+            <th><?= __('Tipo Documento') ?></th>
+            <td><?= h($user->tipo_documento) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Documento') ?></th>
+            <td><?= h($user->documento) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Primer Nombre') ?></th>
+            <td><?= h($user->primer_nombre) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Segundo Nombre') ?></th>
+            <td><?= h($user->segundo_nombre) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Primer Apellido') ?></th>
+            <td><?= h($user->primer_apellido) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Segundo Apellido') ?></th>
+            <td><?= h($user->segundo_apellido) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Edad') ?></th>
+            <td><?= h($user->edad) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Genero') ?></th>
+            <td><?= h($user->genero) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($user->id) ?></td>
         </tr>

@@ -8,7 +8,6 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 use Cake\Auth\DefaultPasswordHasher;
-
 /**
  * Users Model
  *
@@ -60,6 +59,30 @@ class UsersTable extends Table
             ->notEmpty('password');
 
         $validator
+            ->allowEmpty('tipo_documento');
+
+        $validator
+            ->allowEmpty('documento');
+
+        $validator
+            ->allowEmpty('primer_nombre');
+
+        $validator
+            ->allowEmpty('segundo_nombre');
+
+        $validator
+            ->allowEmpty('primer_apellido');
+
+        $validator
+            ->allowEmpty('segundo_apellido');
+
+        $validator
+            ->allowEmpty('edad');
+
+        $validator
+            ->allowEmpty('genero');
+
+        $validator
             ->add('active', 'valid', ['rule' => 'boolean'])
             ->requirePresence('active', 'create')
             ->notEmpty('active');
@@ -81,7 +104,7 @@ class UsersTable extends Table
         return $rules;
     }
 
-    /** Enctriptando la contraseÃ±a **/
+    /** Enctriptando la contraseña **/
     public function beforeSave(Event $event)
     {
         $entity = $event->data['entity'];
