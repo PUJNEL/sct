@@ -109,4 +109,18 @@ class AppointmentsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+    public function listAppointmentsByPatient(){
+        $this->viewBuilder()->layout('ajax');
+        $this->request->allowMethod(['post', 'put', 'get']);
+        
+        $datos = $this->request->data();
+
+        debug($datos["tipo_documento"]);
+
+        //$this->Appointments->find()
+
+        $this->set('listAppointmentsByPatient',$this->request->data());
+        $this->Auth->logout();
+    }
 }

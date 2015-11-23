@@ -109,12 +109,16 @@ class UsersController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    public function logout(){
+        $this->viewBuilder()->layout('ajax');
+        $this->Auth->logout();
+    }
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['add','index']);
+       $this->Auth->allow(['logout']);
     }
 }

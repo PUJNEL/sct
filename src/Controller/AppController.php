@@ -64,10 +64,56 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // Admin can access every action
-       /* if (isset($user['role']) && $user['role'] === 'admin') {
-            return true;
-        } */
+        //debug($user);
+        
+        /**
+        * CONSTANTES DE GRUPOS
+        */
+        define("GRUPO_PACIENTES",1);
+        define("GRUPO_DOCTORES",2);
+        define("GRUPO_CAJEROS",3);
 
+        $controlador = $this->request->params["controller"];
+        $accion = $this->request->params["action"];
+
+        $authorizations = [
+            GRUPO_PACIENTES => [
+                "Appointments" => [ //Controlador
+                    "listAppointmentsByPatient"=>"", //Funciones
+                    "listAppointmentsByPatient"=>""
+                ]
+            ],
+            GRUPO_DOCTORES => [
+                "Appointments" => [
+                    "listAppointmentsByPatient"=>"",
+                    "listAppointmentsByPatient"=>""
+                ]
+            ],
+            GRUPO_CAJEROS => [
+                "Appointments" => [
+                    "listAppointmentsByPatient"=>"",
+                    "listAppointmentsByPatient"=>""
+                ],
+                "Users" => [
+                    "add"=>""
+                ]
+            ]
+        ];
+        /*
+        debug($user);
+        debug($controlador);
+
+        debug($accion);
+        debug($authorizations);
+        */
+        
+        //Pacientes
+        if (isset($user['group_id']) ) {
+             debug(isset($authorizations[$user['group_id']][$controlador][$accion]));
+        } 
+
+
+        
         // Default deny
         return true;
     }
