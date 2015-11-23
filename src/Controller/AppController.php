@@ -81,6 +81,9 @@ class AppController extends Controller
                 "Appointments" => [ //Controlador
                     "listAppointmentsByPatient"=>"", //Funciones
                     "listAppointmentsByPatient"=>""
+                ],
+                "Turns" => [
+                    "generateTurn"=>""
                 ]
             ],
             GRUPO_DOCTORES => [
@@ -106,10 +109,10 @@ class AppController extends Controller
         debug($accion);
         debug($authorizations);
         */
-        
+
         //Pacientes
         if (isset($user['group_id']) ) {
-             debug(isset($authorizations[$user['group_id']][$controlador][$accion]));
+             return isset($authorizations[$user['group_id']][$controlador][$accion]);
         } 
 
 

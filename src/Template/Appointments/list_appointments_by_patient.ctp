@@ -1,1 +1,1 @@
-<?php echo json_encode($listAppointmentsByPatient); ?>
+<?php echo json_encode($listAppointments); ?>

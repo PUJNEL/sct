@@ -5,6 +5,8 @@ use App\Controller\AppController;
 /* Agregando Event*/
 use Cake\Event\Event;
 
+use Cake\ORM\TableRegistry;
+
 /**
  * Users Controller
  *

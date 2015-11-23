@@ -4,6 +4,9 @@ namespace App\Controller;
 use App\Controller\AppController;
 /* Agregando Event*/
 use Cake\Event\Event;
+
+use Cake\ORM\TableRegistry;
+
 /**
  * Groups Controller
  *

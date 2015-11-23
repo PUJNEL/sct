@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+use Cake\ORM\TableRegistry;
+
 /**
  * Appointments Controller
  *
@@ -114,13 +116,44 @@ class AppointmentsController extends AppController
         $this->viewBuilder()->layout('ajax');
         $this->request->allowMethod(['post', 'put', 'get']);
         
-        $datos = $this->request->data();
+        $tipo_documento = $this->request->data["tipo_doc"];
+        $documento = $this->request->data["doc"];
 
-        debug($datos["tipo_documento"]);
+        //Cargar un modelo (Clase) diferente al del controlador
+        $Users = TableRegistry::get('Users');
 
-        //$this->Appointments->find()
+        //Consulta id del paciente
+        $query_patient_id = $Users->find();
+        $query_patient_id->select("id");
+        $query_patient_id->where([
+                        "Users.tipo_documento"=>$tipo_documento,
+                        "Users.documento"=>$documento
+                    ]);
+        $query_patient_id->first();
 
-        $this->set('listAppointmentsByPatient',$this->request->data());
+    
+        //Verificar queries
+        //debug($patient_id->execute());
+
+        //Ejecutar queries
+        foreach ($query_patient_id as $key => $value) {
+            $patient_id = $value["id"];
+        }
+
+       
+        //Consultando del modelo asociado al controlador
+        //Variable = $this=> Controlador -> operacion
+        $query_listAppointments = $this->Appointments->find("all");
+        $query_listAppointments->select(["Appointments.id","Appointments.doctor_id","Appointments.name","Appointments.detail","Appointments.date","Appointments.state","Appointments.created"]);
+        $query_listAppointments->where(["Appointments.patient_id" => $patient_id]);
+
+        //Ejecutar
+        //debug($query_listAppointments->toArray());
+        
+        //debug($respuesta);
+       //Envia a la vista y/o Ejecuta 
+        $this->set('listAppointments',$query_listAppointments->toArray());
+
         $this->Auth->logout();
     }
 }

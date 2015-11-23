@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+use Cake\ORM\TableRegistry;
+
 /**
  * Turns Controller
  *
@@ -108,5 +110,24 @@ class TurnsController extends AppController
             $this->Flash->error(__('The turn could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function generateTurn(){
+        $this->viewBuilder()->layout('ajax');
+        $this->request->allowMethod(['post', 'put', 'get']);
+
+        //Ver data que llega por post
+        //debug($this->request->data());
+
+        $tipo_documento = $this->request->data["tipo_doc"];
+        $documento = $this->request->data["doc"];
+        
+        
+        debug("Tipo doc");
+        debug($tipo_documento);
+
+        debug("Hola");
+
+        $this->Auth->logout();
     }
 }
