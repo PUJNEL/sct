@@ -140,19 +140,23 @@ class AppointmentsController extends AppController
             $patient_id = $value["id"];
         }
 
-       
-        //Consultando del modelo asociado al controlador
-        //Variable = $this=> Controlador -> operacion
-        $query_listAppointments = $this->Appointments->find("all");
-        $query_listAppointments->select(["Appointments.id","Appointments.doctor_id","Appointments.name","Appointments.detail","Appointments.date","Appointments.state","Appointments.created"]);
-        $query_listAppointments->where(["Appointments.patient_id" => $patient_id]);
+        if(isset($patient_id)){
+            //Consultando del modelo asociado al controlador
+            //Variable = $this=> Controlador -> operacion
+            $query_listAppointments = $this->Appointments->find("all");
+            $query_listAppointments->select(["Appointments.id","Appointments.doctor_id","Appointments.name","Appointments.detail","Appointments.date","Appointments.state","Appointments.created"]);
+            $query_listAppointments->where(["Appointments.patient_id" => $patient_id]);
+            
+            $this->set('listAppointments',$query_listAppointments->toArray());
+        }else{
+            $this->set('listAppointments',array());
+        }
 
         //Ejecutar
         //debug($query_listAppointments->toArray());
-        
+            
         //debug($respuesta);
        //Envia a la vista y/o Ejecuta 
-        $this->set('listAppointments',$query_listAppointments->toArray());
 
         $this->Auth->logout();
     }
