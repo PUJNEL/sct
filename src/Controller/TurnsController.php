@@ -112,22 +112,28 @@ class TurnsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function generateTurn(){
+   public function generateTurn(){
         $this->viewBuilder()->layout('ajax');
         $this->request->allowMethod(['post', 'put', 'get']);
-
-        //Ver data que llega por post
-        //debug($this->request->data());
-
-        $tipo_documento = $this->request->data["tipo_doc"];
-        $documento = $this->request->data["doc"];
         
-        
-        debug("Tipo doc");
-        debug($tipo_documento);
-
-        debug("Hola");
-
+         $turn= $this->Turns->newEntity();
+         $turn->appointment_id= $this->request->data["appointment_id"];
+         $turn->cashier_id= $this->request->data["cashier_id"];
+         $turn->state =  "Generado";//$this->request->data["state"];
+        if ($this->request->is('post')) {
+            //debug('post');
+            if ($this->Turns->save($turn)) {
+              //  $this->Flash->success(__('The turn has been saved.'));
+                //debug('The turn has been saved.');
+                $this->set("turno_id",$turn["id"]);
+              //  return true;
+              // return $this->redirect(['action' => 'index']);
+            } else {
+                $this->set("turno_id",-1);
+                //$this->Flash->error(__('The turn could not be saved. Please, try again.'));
+            }
+        }
+        //debug($turn["id"]);
         $this->Auth->logout();
     }
 }
