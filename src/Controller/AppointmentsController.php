@@ -145,7 +145,10 @@ class AppointmentsController extends AppController
             //Variable = $this=> Controlador -> operacion
             $query_listAppointments = $this->Appointments->find("all");
             $query_listAppointments->select(["Appointments.id","Appointments.doctor_id","Appointments.name","Appointments.detail","Appointments.date","Appointments.state","Appointments.created"]);
-            $query_listAppointments->where(["Appointments.patient_id" => $patient_id]);
+            $query_listAppointments->where([
+                "Appointments.patient_id" => $patient_id,
+                "Appointments.state" => "Cerrada"
+                ]);
             
             $this->set('listAppointments',$query_listAppointments->toArray());
         }else{
@@ -160,4 +163,35 @@ class AppointmentsController extends AppController
 
         $this->Auth->logout();
     }
+
+    public function updateAppAppointmentsId()
+    {
+       
+        $this->viewBuilder()->layout('ajax');
+        $this->request->allowMethod(['post', 'put', 'get']);
+
+        debug("updateAppAppointmentsId");
+        $id = $this->request->data["appointment_id"];
+        debug("Id =>");
+        debug($id);
+        $query_Appointments = $this->Appointments->get($id, [
+            'contain' => []
+        ]);
+        
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            debug('post');
+            //$step = $this->Steps->patchEntity($step, $this->request->data);
+            $query_Appointments->state = 'Cerrada';
+            if ($this->Appointments->save($query_Appointments)) {
+              /*  $this->Flash->success(__('The step has been saved.'));
+                return $this->redirect(['action' => 'index']);*/
+                debug('The turn has been saved.');
+            } else {
+                 debug('The turn could not be saved. Please, try again.');/*
+                $this->Flash->error(__('The step could not be saved. Please, try again.'));*/
+            }
+        }
+        $this->Auth->logout();
+    }
+
 }
