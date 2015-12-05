@@ -124,29 +124,35 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->data;
             $query = $this->Users->find("all");
-            $query->select(["password","group_id"]);
+            $query->select(["id","password","group_id"]);
             $query->where(["username"=>$data["username"]]);
 
             $users = $query->toArray();
             if(isset($users[0])){
-
+            
                 $user = $users[0];
                 $hasher = new DefaultPasswordHasher();
                 $pass =  $hasher->check($data["password"], $user->password);
 
              
                 if($pass)
-                    $data = $user->group_id;
+                    $data = json_encode($user);
                 else
                     $data = 0;
                  
-
                 $this->set("data",$data);
              }else{
-                $this->set("data",0);
+
+                $this->set("data","0");
              }
         }
     }
+
+
+
+   
+
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);

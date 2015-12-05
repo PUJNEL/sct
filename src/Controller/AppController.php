@@ -97,8 +97,8 @@ class AppController extends Controller
                     "listAppointmentsByPatient"=>"",
                     "listAppointmentsByPatient"=>""
                 ],
-                "Users" => [
-                    "add"=>""
+                "Turns" => [
+                    "listPatientsBYTurn"=>""
                 ]
             ]
         ];
@@ -111,9 +111,9 @@ class AppController extends Controller
         */
 
         //Pacientes
-        if (isset($user['group_id']) ) {
+       /* if (isset($user['group_id']) ) {
              return isset($authorizations[$user['group_id']][$controlador][$accion]);
-        } 
+        } */
 
 
         

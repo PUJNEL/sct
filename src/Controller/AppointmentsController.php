@@ -147,9 +147,9 @@ class AppointmentsController extends AppController
             $query_listAppointments->select(["Appointments.id","Appointments.doctor_id","Appointments.name","Appointments.detail","Appointments.date","Appointments.state","Appointments.created"]);
             $query_listAppointments->where([
                 "Appointments.patient_id" => $patient_id,
-                "Appointments.state" => "Cerrada"
+                "Appointments.state" => "Pendiente"
                 ]);
-            
+            //debug($query_listAppointments);
             $this->set('listAppointments',$query_listAppointments->toArray());
         }else{
             $this->set('listAppointments',array());
