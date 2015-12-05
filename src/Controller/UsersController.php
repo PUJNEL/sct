@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use Cake\Auth\DefaultPasswordHasher;
+
 use App\Controller\AppController;
 /* Agregando Event*/
 use Cake\Event\Event;
@@ -115,12 +117,42 @@ class UsersController extends AppController
         $this->viewBuilder()->layout('ajax');
         $this->Auth->logout();
     }
+    public function loginverify(){
+       
+        $this->viewBuilder()->layout("ajax") ;
+        //$this->request->allowMethod(['post']);
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $query = $this->Users->find("all");
+            $query->select(["password","group_id"]);
+            $query->where(["username"=>$data["username"]]);
+
+            $users = $query->toArray();
+            if(isset($users[0])){
+
+                $user = $users[0];
+                $hasher = new DefaultPasswordHasher();
+                $pass =  $hasher->check($data["password"], $user->password);
+
+             
+                if($pass)
+                    $data = $user->group_id;
+                else
+                    $data = 0;
+                 
+
+                $this->set("data",$data);
+             }else{
+                $this->set("data",0);
+             }
+        }
+    }
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-       $this->Auth->allow(['logout']);
+       $this->Auth->allow(['logout','loginVerify']);
     }
 }
